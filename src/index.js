@@ -2,17 +2,17 @@
 export default function createSerialExector({ merge } = { merge: t => t }) {
   const list = [];
 
-  const register = validator => {
-    list.push(validator)
+  const register = processor => {
+    list.push(processor)
   };
 
   const start = payload => {
     let i = 0;
     const run = (j = i++) => {
-      const validator = list[j];
-      if (!validator) return Promise.resolve(payload);
+      const processor = list[j];
+      if (!processor) return Promise.resolve(payload);
       return new Promise((resolve, reject) => {
-        validator(
+        processor(
           data => {
             payload = merge(payload, data || {});
             resolve()
