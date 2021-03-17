@@ -8,8 +8,8 @@ export default function createSerialExector({ merge } = { merge: t => t }) {
 
   const start = payload => {
     let i = 0;
-    const run = (j = i++) => {
-      const processor = list[j];
+    const run = () => {
+      const processor = list[i++];
       if (!processor) return Promise.resolve(payload);
       return new Promise((resolve, reject) => {
         processor(
@@ -31,3 +31,4 @@ export default function createSerialExector({ merge } = { merge: t => t }) {
 
   return { register, start }
 }
+
