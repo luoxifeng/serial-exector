@@ -1,10 +1,14 @@
 
-export default function createSerialExector({ merge } = { merge: t => t }) {
+export default function createSerialExector(
+  {
+    merge = t => t 
+  } = { 
+    merge: t => t 
+  }
+) {
   const list = [];
 
-  const register = processor => {
-    list.push(processor)
-  };
+  const register = list.push.bind(list)
 
   const start = payload => {
     let i = 0;
