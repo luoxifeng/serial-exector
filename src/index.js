@@ -21,10 +21,7 @@ export default function createSerialExector(
             payload = merge(payload, data || {});
             resolve()
           },
-          msg => {
-            console.error(msg);
-            reject(msg);
-          },
+          reject,
           payload
         )
       })
