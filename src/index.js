@@ -1,11 +1,9 @@
-
-export default function createSerialExector(
-  {
-    merge = t => t 
-  } = { 
+const defopts = { 
     merge: t => t 
   }
-) {
+
+export default function createSerialExector( opts) {
+  const { merge } = { ...defopts, ...opts }
   const list = [];
 
   const register = list.push.bind(list)
