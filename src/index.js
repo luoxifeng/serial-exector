@@ -14,14 +14,15 @@ export default function createSerialExector( opts) {
       const processor = list[i++];
       if (!processor) return Promise.resolve(payload);
       return new Promise((resolve, reject) => {
-        processor(
-          data => {
+        const ctl = {
+resolve(data){
             payload = merge(payload, data || {});
             resolve()
           },
-          reject,
+reject,
           payload
-        )
+        }
+processor(ctl)
       })
         .then(run)
     }
