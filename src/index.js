@@ -1,8 +1,8 @@
-const defopts = { 
-    merge: t => t 
-  }
+const defopts = {
+  merge: t => t
+}
 
-export default function createSerialExector( opts) {
+export default function createSerialExector(opts) {
   const { merge } = { ...defopts, ...opts }
   const list = [];
 
@@ -15,14 +15,14 @@ export default function createSerialExector( opts) {
       if (!processor) return Promise.resolve(payload);
       return new Promise((resolve, reject) => {
         const ctl = {
-resolve(data){
+          resolve(data) {
             payload = merge(payload, data || {});
             resolve()
           },
-reject,
+          reject,
           payload
         }
-processor(ctl)
+        processor(ctl)
       })
         .then(run)
     }
